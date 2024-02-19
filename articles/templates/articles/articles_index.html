@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<h1> Nos Articles </h1>
+
+{% for articles in articles %}
+    <h2>{{articles.title}}</h2>
+    <img src="{{articles.image.url}}" alt="{{ articles.title}}" style="max-width:250px;">
+    <a href="{{ articles.get_absolute_url}}">Voir l'article</a>
+{% endfor %}
+
+{% endblock %}

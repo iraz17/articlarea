@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="./output.css" rel="stylesheet">
+    <title>{% block title %}Articlarea{% endblock title %}</title>
+    
+</head>
+<body>
+<header>
+  <nav id="navbar">
+    <ul class="nav-list">
+      <li>
+        <a href="#welcome-section">Articlarea</a>
+      </li>
+      <li>
+        <a href="{% url 'articles_index' %}">Articles</a>
+      </li>
+      <li>
+        {% if user.is_authenticated %}
+        {{ user.username }}
+        <a href="{% url 'logout' %}">Déconnexion</a>
+        {% else %}
+        <a href="{% url 'login' %}">Connexion</a>
+        <a href="{% url 'signup' %}">Inscription</a>
+        {% endif %}
+      </li>
+      <li>
+        {% if user.cart %}
+        <a href="{% url 'cart' %}">Voir le panier({{ user.cart.orders.count }})</a>
+        {% endif %}
+      </li>
+    </ul>
+  </nav>
+</header>
+{% block page_content %}
+
+{% endblock page_content %}
+</body>
+</html>
