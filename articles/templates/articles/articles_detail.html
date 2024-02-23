@@ -8,10 +8,7 @@
 <p>{{articles.stock}}</p>
 
 {% if user.is_authenticated %}
-<p><a href="{% url 'add_to_cart' articles.slug %}"> 
-    Ajouter l'article dans le panier
-
-</a></p>
+<p><a href="{% url 'add_to_cart' articles.slug %}"> Ajouter l'article dans le panier</a></p>
 {% endif %}
     
 {% endblock %}

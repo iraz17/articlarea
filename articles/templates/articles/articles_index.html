@@ -1,12 +1,22 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-<h1> Nos Articles </h1>
-
-{% for articles in articles %}
-    <h2>{{articles.title}}</h2>
-    <img src="{{articles.image.url}}" alt="{{ articles.title}}" style="max-width:250px;">
-    <a href="{{ articles.get_absolute_url}}">Voir l'article</a>
-{% endfor %}
+<div class="container">
+    <div> <h1> Nos Articles </h1></div>
+    <div class="d-flex flex-wrap grid gap-3 ">
+        {% for articles in articles %}
+        <div class="border border-success-subtle rounded g-col-6" style="width: 18rem;">
+        
+            <img src="{{articles.image.url}}" class="card-img-top img-thumbnail rounded" alt="{{ articles.title}}" >
+            
+            <div class="card-body p-2">
+                <h5 class="card-title">{{articles.title}}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{{ articles.get_absolute_url}}" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
 
 {% endblock %}

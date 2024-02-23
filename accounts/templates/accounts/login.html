@@ -2,17 +2,32 @@
 
 {% block page_content %}
 
-<h1>Connexion</h1>
-<form method="POST">
-    {% csrf_token %}
-    <p>
-        <label for="username">Nom d'utilisateur</label>
-        <input id="username" type="text" name="username">
-    </p>
-    <p>
-        <label for="password">Mot de passe</label>
-        <input id="password" type="password" name="password">
-    </p>
-    <button type="Submit">Connexion</button>
-</form>
+<div class=" container dropdown">
+
+    <h1>Connexion</h1>
+    <form class="px-4 py-3" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label">Nom d'utilisateur</label>
+            <input id="username" type="text" name="username" class="form-control" placeholder="Jhon">
+        </div>
+        <div class="mb-3">
+            <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+        <div class="mb-3">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                <label class="form-check-label" for="dropdownCheck">
+                Remember me
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">New around here? Sign up</a>
+    <a class="dropdown-item" href="#">Forgot password?</a>
+</div>
+
 {% endblock page_content %}

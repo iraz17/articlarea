@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Rosarivo:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&family=Rosarivo&display=swap');
+
+:root{
+  --border-lite: #8ECEAA;
+  --text-lite:#193B2D;
+  --interactive-lite:#c4e8d1;
+  --solid-lite:#29a383;
+  --background-lite:#F4FBF6;
+}
+* {
+    box-sizing: border-box;
+    /*Inclus le padding et la bordure dans la taille des boîtes*/
+    padding:0;
+    margin:0;
+    /* Provisoire */
+    /* border: 1px dashed var(--white); */
+}
+body{
+  margin: 0 auto;
+  max-width: 1920px;
+  font-family: "Jost", sans-serif;
+  color: var(--text-lite);
+  font-size: large;
+  background-color: var(--background-lite);
+
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Rosarivo", cursive;
+}
+img{
+  width:100%;
+}
+
+/* ANCHOR NAVBAR */
+
+
+
+nav ul{
+  display: flex;
+  justify-content: center;
+  padding-top: 18px;
+  list-style-type: none;
+}
+nav a{
+  padding: 15px;
+  margin: 0 2px;
+  align-items: center;
+  text-decoration: none;
+}
+.menu_link{
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text-lite);
+  transition: color 400ms;
+  
+}
+
+.menu__link:hover {
+    color: var(--interactive-lite);
+}
+
+/* ANCHOR Les articles détails*/
+
+.article{
+  height:250px;
+}
+

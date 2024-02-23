@@ -1,4 +1,4 @@
-from datetime import timezone
+from django.utils import timezone
 from django.db import models
 from django.urls import reverse
 
@@ -54,8 +54,11 @@ class Cart(models.Model):
         return self.user.username
     
     def delete(self, *args, **kwargs):
-        for order in self.order.all():
-            order.order_date = timezone.now()
+        
+
+        for order in self.orders.all():
+            order.ordered = True
+            order.ordered_date = timezone.now()
             order.save()
         
         self.orders.clear()

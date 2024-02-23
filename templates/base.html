@@ -1,40 +1,69 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link href="./output.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'articlarea/CSS/main.css' %}">
+    <script src="{% static 'articlarea/JS/bootstrap.bundle.min.js' %}"></script>
     <title>{% block title %}Articlarea{% endblock title %}</title>
     
 </head>
 <body>
-<header>
-  <nav id="navbar">
-    <ul class="nav-list">
-      <li>
-        <a href="#welcome-section">Articlarea</a>
-      </li>
-      <li>
-        <a href="{% url 'articles_index' %}">Articles</a>
-      </li>
-      <li>
-        {% if user.is_authenticated %}
-        {{ user.username }}
-        <a href="{% url 'logout' %}">Déconnexion</a>
-        {% else %}
-        <a href="{% url 'login' %}">Connexion</a>
-        <a href="{% url 'signup' %}">Inscription</a>
-        {% endif %}
-      </li>
-      <li>
-        {% if user.cart %}
-        <a href="{% url 'cart' %}">Voir le panier({{ user.cart.orders.count }})</a>
-        {% endif %}
-      </li>
-    </ul>
+<header class="main_header">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">Articlarea</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'articles_index' %}">Articles</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">{{ user.username }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Connexion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup' %}">Inscription</a>
+          </li>
+          {% endif %}
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav ">
+          {% if user.cart %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cart' %}">Voir le panier({{ user.cart.orders.count }})</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
   </nav>
-</header>
+  
+
 {% block page_content %}
 
 {% endblock page_content %}
+<footer class=" fixed-bottom bg-success d-flex justify-content-around py-5">
+  <div>
+    <p>©Copyright {% now "Y"  %} || Develop by Briac</p>
+  </div>
+  <div>
+    <h5>Notre Whatsapp</h5>
+    <p>+255 098 344 344 344</p>
+  </div>
+</footer>
 </body>
 </html>
