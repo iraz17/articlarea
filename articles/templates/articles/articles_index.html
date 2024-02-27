@@ -1,22 +1,44 @@
-{% extends "base.html" %}
+{% extends "pages/base.html" %}
 
 {% block page_content %}
-<div class="container">
-    <div> <h1> Nos Articles </h1></div>
-    <div class="d-flex flex-wrap grid gap-3 ">
-        {% for articles in articles %}
-        <div class="border border-success-subtle rounded g-col-6" style="width: 18rem;">
-        
-            <img src="{{articles.image.url}}" class="card-img-top img-thumbnail rounded" alt="{{ articles.title}}" >
+<section class="container">
+    <div class="flex-row">
+        <div class="">
             
-            <div class="card-body p-2">
-                <h5 class="card-title">{{articles.title}}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="{{ articles.get_absolute_url}}" class="btn btn-primary">Go somewhere</a>
+            <div class="">
+                {% if articles %}
+                <ul>
+                    {% for article in articles %}
+                        <a href=""><li>{{ article.title}}</li></a>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>Aucun résultat trouvé.</p>
+                {% endif %}
             </div>
         </div>
-        {% endfor %}
+        <div class="d-flex flex-wrap grid gap-3 ">
+            <div> <h1> Nos Articles </h1></div>
+
+            {% for article in articles %}
+            <a href="{{ article.get_absolute_url }}" class="text-decoration-none">
+                <div class="border-top border-bottom border-success-subtle row p-2" style="width: 100%;">
+                    <div class="col-4">
+                        <img src="{{article.image.url}}" class="card-img-top img-thumbnail rounded" alt="{{ article.title}}" >
+                    </div>
+                    
+                    <div class="col-8 p-2">
+                        <h5 class="card-title">{{article.title}}</h5>
+                        <p class="card-text">{{article.description}}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
     </div>
-    
+   
+
+</section>
+
 
 {% endblock %}

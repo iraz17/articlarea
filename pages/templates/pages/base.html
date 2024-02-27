@@ -37,9 +37,18 @@
           </li>
           {% endif %}
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form   method="get" action="{% url 'articles_index' %}">
+          <div class="flex-row">
+              <input type="text" name="category" placeholder="Rechercher categorie">
+              <select name="category" id="">
+                  <option value="">Toutes catégories</option>
+                  {% for category in categories%}
+                      <option value="{{ category.id }}">{{ category.title }}</option>
+                  {% endfor %}
+              </select>
+              <button type="submit">Rechercher</button>
+          </div>
+          
         </form>
         <ul class="navbar-nav ">
           {% if user.cart %}
@@ -56,7 +65,7 @@
 {% block page_content %}
 
 {% endblock page_content %}
-<footer class=" fixed-bottom bg-success d-flex justify-content-around py-5">
+<footer class="bottom bg-success d-flex justify-content-around py-5">
   <div>
     <p>©Copyright {% now "Y"  %} || Develop by Briac</p>
   </div>

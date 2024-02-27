@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
-from articles.views import articles_index, articles_detail, add_to_cart, cart, delete_cart
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include("pages.urls")),
@@ -27,7 +26,5 @@ urlpatterns = [
     path('logout_user/', include("accounts.urls")),
     path('articles/', include("articles.urls")),
     path('cart/', include("articles.urls")),
-    path('cart/delete', delete_cart, name='delete_cart'),
-    path("articles/<str:slug>/", articles_detail, name="articles"),
-    path("articles/<str:slug>/add_to_cart/", add_to_cart, name="add_to_cart"),
+    path('add_to_cart/', include("articles.urls")),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

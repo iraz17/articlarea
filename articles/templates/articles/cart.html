@@ -1,13 +1,26 @@
-{% extends "base.html" %}
+
+{% extends "pages/base.html" %}
 
 {% block page_content %}
 
-{% for order in orders %}
-    
-    <h2>{{ order.articles.title }}</h2>
-    <img src="{{ order.articles.image.url }}" alt="{{ order.articles.title }}" style="max-width:250px;">
-    <p>{{ order.quantity }} dans le panier</p>
-{% endfor %}
+<div class="container text-center">
+    <form method="post" action="{% url 'cart' %}">
+        {% csrf_token %}
+        {% for order in orders %}
+        <div class="">
+            {{ order.articles.title }} - Stock restant : {% if remaining_quantities|length and order.id in remaining_quantities %}
+                {{ remaining_quantities.order.id }}  <!-- Calcul de la quantité restante -->
+            {% else %}
+                {{ order.quantity }}  <!-- Affichage de la quantité initiale si le formulaire n'a pas été soumis -->
+            {% endif %}
+            <input type="number" name="{{ order.id }}" min="1" max="{{ article.stock }}" value="{{ order.quantity }}">
+        </div>   
+        {% endfor %}
+        <button type="submit">mettre à jour les quantités</button>
+    </form>
+
+</div>
+
 
 <a href="{% url 'delete_cart' %}">Supprimer le panier </a>
 {% endblock %}

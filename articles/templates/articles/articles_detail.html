@@ -1,14 +1,21 @@
-{% extends "base.html" %}
+{% extends "pages/base.html" %}
 {% block page_content %}
 
-<h2>{{articles.title}}</h2>
-<h3>{{articles.price}} €</h3>
-<img src="{{articles.image.url}}" alt="{{articles.title}}" style="max-width:250px;">
-<p>{{articles.description}}</p>
-<p>{{articles.stock}}</p>
+<h2>{{article.title}}</h2>
+<h3>{{article.price}} €</h3>
+<img src="{{article.image.url}}" alt="{{article.title}}" style="max-width:250px;">
+<p>{{article.description}}</p>
+<p>{{article.stock}} en stock</p>
 
 {% if user.is_authenticated %}
-<p><a href="{% url 'add_to_cart' articles.slug %}"> Ajouter l'article dans le panier</a></p>
+<form action="{% url 'add_to_cart' slug=article.slug %}" method="post">
+    {% csrf_token %}
+    <label for="quantity">Quantité :</label>
+    <input type="number" id="quantity" name="quantity" min="1" max="{{ article.stock }}" value="1">
+    <button type="submit">Ajouter l'article dans le panier</button>
+</form>
+{% else %}
+<a href="{% url 'login' %}"><button>Acheter</button></a>
 {% endif %}
     
 {% endblock %}
