@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block page_content %}
+
+<main>
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-md-10 mx-auto col-lg-5">
+            <img src="{% static 'articlarea/image/Dakar.jpg' %}" width="100%" alt="">
+        </div>
+            
+        <div class="col-lg-7 text center text-lg-start">
+            <h1>Bienvenue sur Articlarea</h1>
+            
+            <p>Découvrez une nouvelle façon de faire vos achats en ligne à Dakar, au Sénégal, avec Articlarea.</p> 
+            <p>Nous sommes votre destination de confiance pour trouver une multitude de produits du quotidien, tous soigneusement sélectionnés et disponibles à portée de clic.</p>
+        </div>
+    </div>
+    
+</div>
+
+<div class="b-example-divider"></div>
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text center text-lg-start">
+            <p>Chez Articlarea, nous croyons en la simplicité et en la praticité. </p> 
+            <p>C'est pourquoi nous avons créé une plateforme conviviale où les vendeurs locaux peuvent mettre en avant leurs produits uniques, tandis que les acheteurs peuvent parcourir une variété d'articles essentiels, des produits alimentaires aux articles ménagers, en passant par les vêtements et bien plus encore.</p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <img src="{% static 'articlarea/image/Dakar.jpg' %}"width="100%" alt="">
+        </div>
+    </div>
+    
+</div>
+<div class="b-example-divider"></div>
+
+  {% for category in links %}
+  <div class="row text-center">
+    <div class="card mb-3 align-items-center" style="width: 250px;">
+      <a href="{% url 'articles_index' %}" class="img-wrap">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ category.cat_image.url }}" style="max-width: 150px;" alt="">
+          </div>
+          <div class="col-md-8">
+            <figcaption class="info-wrap">
+              <a href="{% url 'articles_index' %}" class="title">{{ category.category_name }}</a>
+            </figcaption>
+          </div>
+        </div>
+      </a>    
+    </div>
+  </div>
+  
+  {% endfor %}
+
+<div class="b-example-divider"></div>
+<div class=" px-4 py-5">
+  <div class="row align-items-center g-lg-3 py-3">
+    <div class="col-md-8 col-lg-5">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.3374344609333!2d-17.447999999999997!3d14.693499999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec173007f046a05%3A0xeac9195488242056!2zTcOpZGluYQ!5e0!3m2!1sfr!2sfr!4v1709239546549!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="col-md-4 text center text-lg-start">
+      <h2>Horraire d'ouverture</h2>
+      <p>Lundi: 8h00 - 17h00 </p>
+      <p>Mardi: 8h00 - 17h00 </p>
+      <p>Mercredi: 8h00 - 17h00 </p>
+      <p>Jeudi: 8h00 - 17h00 </p>
+      <p>Vendredi: 8h00 - 17h00 </p>
+    </div>
+  </div>
+</div>
+</main>
+    
+    
+
+
+{% endblock page_content %}
+

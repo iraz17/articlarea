@@ -1,11 +1,10 @@
 from django.contrib import admin
-from articles.models import Articles, Order, Cart
+from .models import Articles
 
-class ArticlesAdmin(admin.ModelAdmin):
-    pass
-
-admin.site.register(Articles, ArticlesAdmin)
-admin.site.register(Order)
-admin.site.register(Cart)
+class AdminArticles(admin.ModelAdmin):
+    list_display = ('category', 'title', 'description', 'price', 'stock', 'composition', 'date_added', 'created_date', 'modified_date')
+    prepopulated_field = {'slug': ('title',)}
+    
+admin.site.register(Articles, AdminArticles)
 
 

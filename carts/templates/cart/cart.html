@@ -1,0 +1,100 @@
+
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<section class="section-content padding-y bg">
+    <div class="container">
+        
+        {% if not cart_items %}
+        <h2 class="text-center"> Ton panier est vide </h2>
+        <br>
+        <div class="text-center">
+            <a href="{% url 'articles_index' %}" class="btn btn-success"> Continuer ses achats</a>
+
+        </div>
+            
+        {% else %}
+        <div class="row">
+            <aside class="col-lg-9">
+                <div class="card">
+                    <table class="table table-borderless table-shopping-cart">
+                        <thead class="text-muted">
+                            <tr class="small text-uppercase">
+                                <th scope="col"> Article</th>
+                                <th scope="col" width="120"> Quantité </th>
+                                <th scope="col" width="120"> Prix </th>
+                                <th scope="col" class="text-right" width="200"></th>
+                            </tr>
+                        </thead>
+                        {% for cart_item in cart_items %}
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <figure class="itemside d-flex align-items-center">
+                                        <div class="aside"><img src="{{ cart_item.articles.image.url }}" alt="" class="" width="125px"></div>
+                                        <figcaption class="text-success">
+                                            <a href="{{ cart_item.articles.get_absolute_url }}" class="title text-dark">{{ cart_item.articles.title }}</a>
+                                            <p class="text-muted small"></p>
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td>
+                                    <div class="input-group mb-3 d-flex">
+                                        <div class="input-group-text p-2">
+                                            <a href="{% url 'remove_cart' cart_item.articles.id %}" class="btn btn-light" type="button" id="button-plus"><i class="fa fa-minus"></i></a>
+                                        </div>
+                                            <input type="text" class="form-control p-2" placeholder="{{ cart_item.quantity }}" >
+                                        <div class="input-group-text p-2">
+                                            <a href="{% url 'add_cart' cart_item.articles.id %}" class="btn btn-light" type="button" id="button-minus"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="price-wrap">
+                                        <var class="price">{{cart_item.sub_total}}</var>
+                                        <small class="text-muted"> {{ cart_item.articles.price }}</small>
+                                    </div>
+                                </td>
+                                {% endfor %}
+                                <td class="text-right">
+                                    <a href="" class="btn btn-danger"> Remove </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </aside> 
+            <aside class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <dl class="d-flex flex-wrap align-items-start">
+                            <dt>Prix total: </dt>
+                            <dd class="text-right m-auto d-inline-block">{{ total }}</dd>
+                        </dl>
+                        <dl class="d-flex flex-wrap align-items-start">
+                            <dt>Tax: </dt>
+                            <dd class="text-right m-auto d-inline-block">{{ tax }}</dd>
+                        </dl>
+                        <dl class=" d-flex flex-wrap align-items-start">
+                            <dt>Total: </dt>
+                            <dd class="text-righ text-dark m-auto"><strong>{{ grand_total }}</strong></dd>
+                        </dl>
+                        <hr>
+                        <p class="text-center mb-3">
+                            <img src="" alt="" height="26">
+                        </p>
+                        <a href="" class="btn btn-success btn-block">Vérifier</a>
+                        <a href="{% url 'articles_index' %}" class="btn btn-light btn-block">Continuer les Achats</a>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+        {% endif %}
+    </div>
+
+</section>
+
+{% endblock %}

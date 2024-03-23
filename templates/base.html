@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="{% static 'articlarea/CSS/main.css' %}">
+      <script src="{% static 'articlarea/JS/bootstrap.bundle.min.js' %}"></script>
+
+      <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+      <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+      <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+      <title>{% block title %}Articlarea{% endblock title %}</title>
+      
+  </head>
+  <body>
+    {% include 'includes/navbar.html' %}
+      {% block page_content %}
+      {% endblock page_content %}
+    {% include 'includes/footer.html' %}
+  </body>
+</html>
